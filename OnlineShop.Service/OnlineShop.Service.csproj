@@ -83,6 +83,7 @@
     <Compile Include="IoC.cs" />
     <Compile Include="ModelViews\AspNetUsersView.cs" />
     <Compile Include="ModelViews\CartView.cs" />
+    <Compile Include="ModelViews\CatalogResult.cs" />
     <Compile Include="ModelViews\CategoryView.cs" />
     <Compile Include="ModelViews\OrderDetailView.cs" />
     <Compile Include="ModelViews\OrderStatusView.cs" />

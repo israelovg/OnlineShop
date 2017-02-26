@@ -558,7 +558,6 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DataServiceController.cs" />
@@ -656,7 +655,6 @@
   <ItemGroup>
     <Folder Include="app\directives\" />
     <Folder Include="Images\productImg\" />
-    <Folder Include="Views\Administration\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineShop.Service\OnlineShop.Service.csproj">

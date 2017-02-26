@@ -28,10 +28,7 @@ namespace OnlineShop.Web.Controllers
             if (search != null)
                 search = Server.UrlDecode(search);
             var results = _CatalogService.GetCatalog(8,search, page, category);
-            if (results.Count() > 0)
-                return View(results);
-            else
-                return new EmptyResult();
+            return View(results);
         }
     }
 }

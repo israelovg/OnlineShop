@@ -9,6 +9,6 @@ namespace OnlineShop.Service.Interfaces
 {
     public interface ICatalogService
     {
-        IEnumerable<ProductView> GetCatalog(int pageSize, string search = null, int page = 0, int? category = null);
+        CatalogResult GetCatalog(int pageSize, string search = null, int page = 0, int? category = null);
     }
 }
