@@ -1,15 +1,15 @@
 ﻿@using GridMvc.Html
 @using OnlineShop.Service.ModelViews;
-    @model IEnumerable<CartView>
-        @{
+@model IEnumerable<CartView>
+@{
             ViewBag.Title = "Cart";
-        }
-        @section style {
-            @Styles.Render("~/Content/gridmvc")
-        }
-        @section scripts {
-            @Scripts.Render("~/bundles/gridmvc")
-        }
+}
+@section style {
+    @Styles.Render("~/Content/gridmvc")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/gridmvc")
+}
 <div id="main">
     <div class="grid-container">
         <div class="row">
@@ -19,28 +19,31 @@
                     <div class="panel-heading">Cart Items</div>
                     <div class="panel-body">
                         @Html.Grid(Model).Columns(columns =>
-                       {
-                       columns.Add(cart => cart.Product.Name).Titled("Name").SetWidth("20%").Filterable(true);
-                       columns.Add(cart => cart.Product.Category.Name).Titled("Category").Filterable(true).SetWidth("20%");
-                       columns.Add(cart => cart.Product.Price).Titled("Price per item $").Filterable(true).SetWidth("20%");
-                       columns.Add(cart => cart.Quantity).Titled("Quantity").Filterable(true).SetWidth("20%");
-                       columns.Add().Encoded(false).SetWidth("20%")
-                                       .Sanitized(false)
-                                       .RenderValueAs(cart =>
-                                    @<text>
-                                        @Html.ActionLink("Remove", "removeFromCart", "cart", new { id = cart.Product.Id }, new { @class = "btn btn-primary", style = "margin-left:15px" })
-                        @Html.ActionLink("Buy", "OrderCart", "Order", new { id = cart.Id }, new { @class = "btn btn-warning btn-buy" })
-                                    </text>);
-                       }).WithPaging(10).Selectable(false)
+                   {
+                   columns.Add(cart => cart.Product.Name).Titled("Name").SetWidth("20%").Filterable(true);
+                   columns.Add(cart => cart.Product.Category.Name).Titled("Category").Filterable(true).SetWidth("20%");
+                   columns.Add(cart => cart.Product.Price).Titled("Price per item $").Filterable(true).SetWidth("20%");
+                   columns.Add(cart => cart.Quantity).Titled("Quantity").Filterable(true).SetWidth("20%");
+                   columns.Add().Encoded(false).SetWidth("20%")
+                                   .Sanitized(false)
+                                   .RenderValueAs(cart =>
+                                @<text>
+                                    @Html.ActionLink("Remove", "removeFromCart", "cart", new { id = cart.Product.Id }, new { @class = "btn btn-primary", style = "margin-left:15px" })
+                                    @Html.ActionLink("Buy", "OrderCart", "Order", new { id = cart.Id }, new { @class = "btn btn-warning btn-buy" })
+                                </text>);
+                   }).WithPaging(10).Selectable(false)
 
                     </div>
                     <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h4> Total  @Model.Count() items $@Model.Sum(x => x.Product.Price * x.Quantity)</h4>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4> Total  @Model.Count() items $@Model.Sum(x => x.Product.Price * x.Quantity)</h4>
+                            </div>
+                            @if (Model.Sum(x => x.Quantity) > 0)
+                            {
+                                <div class="col-md-6">@Html.ActionLink("CheckOut", "OrderAllCart", "Order", null, new { @class = "btn btn-warning" })</div>
+                            }
                         </div>
-                        <div class="col-md-6">@Html.ActionLink("CheckOut", "OrderAllCart", "Order",null, new { @class = "btn btn-warning" })</div>
-                    </div> 
                     </div>
                 </div>
             </div>
