@@ -1,0 +1,18 @@
+﻿@using OnlineShop.Service.ModelViews;
+@model IEnumerable<CategoryView>
+@{
+    Layout = null;
+}
+<aside id="left-panel">
+    <div class="indutry-info  col-md-12  ">
+        <div class="industry-enter"><span>New In<br>Woman</span></div>
+
+        <div class="keyword-list">
+            @foreach (var item in Model)
+            {
+                @Html.ActionLink(item.Name, "index", "catalog", new { category = item.Id},new { @class = item.Id.ToString() == Request.QueryString["category"] ? "highlight" : "" })
+            }
+        </div>
+
+    </div>
+</aside>

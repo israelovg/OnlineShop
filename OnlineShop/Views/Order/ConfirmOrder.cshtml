@@ -1,0 +1,198 @@
+﻿@model  OnlineShop.Service.ModelViews.OrderView
+@using System.Globalization
+@{
+    ViewBag.Title = "ConfirmOrder";
+}
+
+<div id="main">
+    <section id="widget-grid" class="catContent grid-container">
+
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 sortable-grid ui-sortable">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-sortable" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" role="widget">
+                    <header role="heading">
+                        <div class="jarviswidget-ctrls" role="menu">  </div>
+                        <span class="widget-icon">  </span>
+                        <h2>Review your order</h2>
+
+                        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                    </header>
+
+                    <!-- widget div-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div role="content">
+
+                                <!-- widget edit box -->
+                                <div class="jarviswidget-editbox">
+                                    <!-- This area used as dropdown edit box -->
+
+                                </div>
+                                <!-- end widget edit box -->
+                                <!-- widget content -->
+                                <div class="widget-body">
+                                    @using (Html.BeginForm("confirmOrder", "order", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+                                        @Html.HiddenFor(x => x.TargetId)
+                                        @Html.HiddenFor(x=>x.OrderTypeInt)
+                                        @Html.HiddenFor(x => x.Total)
+                                        @Html.HiddenFor(x => x.OrderStatusId)
+                                        <fieldset>
+                                            <legend>Shiping informatoin</legend>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Address</label>
+                                                <div class="col-md-6">
+                                                    @Html.TextBoxFor(x => x.Address, new { @class = "form-control", placeholder = "Address" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Address, null, new { @class = "col-md-4" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">City</label>
+                                                <div class="col-md-6">
+                                                    @Html.TextBoxFor(x => x.City, new { @class = "form-control", placeholder = "City" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.City, null, new { @class = "col-md-4" })
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">State</label>
+                                                <div class="col-md-6">
+                                                    @Html.TextBoxFor(x => x.State, new { @class = "form-control", placeholder = "State" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Postal Code</label>
+                                                <div class="col-md-6">
+                                                    @Html.TextBoxFor(x => x.PostalCode, new { @class = "form-control", placeholder = "Postal Code" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Country</label>
+                                                <div class="col-md-6">
+                                                    @Html.TextBoxFor(x => x.Country, new { @class = "form-control", placeholder = "Country" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Country, null, new { @class = "col-md-4" })
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Phone</label>
+                                                <div class="col-md-6">
+                                                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", placeholder = "Phone" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Phone, null, new { @class = "col-md-4" })
+                                            </div>
+
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="col-md-12">
+                                                <legend>Payment</legend>
+                                                <div class="form-group">
+                                                    <label>Card number</label>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            @Html.TextBoxFor(x => x.CardNumber, new { @class = "form-control", placeholder = "Card number" })
+                                                            @Html.ValidationMessageFor(model => model.CardNumber, null, new { })
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Expire Date</label><label class="col-md-5">Security Code</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            @Html.TextBoxFor(x => x.Month, new { @class = "form-control ", placeholder = "MM" })
+                                                            @Html.ValidationMessageFor(model => model.Month, null, new {  })
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            @Html.TextBoxFor(x => x.Year, new { @class = "form-control", placeholder = "YY" })
+                                                            @Html.ValidationMessageFor(model => model.Year, null, new {  })
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            @Html.TextBoxFor(x => x.SecurityCode, new { @class = "form-control", placeholder = "Security code" })
+                                                            @Html.ValidationMessageFor(model => model.SecurityCode, null, new {  })
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <label class="col-md-8">Card holder name</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control ", placeholder = "First Name" })
+                                                            @Html.ValidationMessageFor(model => model.Month, null, new { @class = "errorMessage" })
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = "Last Name" })
+                                                            @Html.ValidationMessageFor(model => model.LastName, null, new { @class = "errorMessage" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="all-total-price-warpper">
+                                                                <em>All Total:</em>
+                                                                <span id="all-totalfee" class="ui-cost">
+                                                                    <b>US @string.Format(new CultureInfo("en-SG", false), "{0:c0}",@Model.Total)</b>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <button type="submit" class="btn btn-warning">Confirm & Pay</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                    }
+
+
+                                </div>
+                                <!-- end widget content -->
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div role="content">
+                                <fieldset>
+                                    <legend> Order Review</legend>
+                                    @foreach (var item in Model.OrderDetails)
+                                    {
+                                        @Html.Partial("_OrderProduct", item)
+                                    }
+                                </fieldset>
+
+                            </div>
+                         </div>
+                    </div>
+                 
+                        <!-- end widget div -->
+
+                    </div>
+                    <!-- end widget -->
+
+                </article>
+                <!-- WIDGET END -->
+
+            </div>
+
+
+        </section>
+    </div>

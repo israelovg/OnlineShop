@@ -1,0 +1,60 @@
+﻿@using GridMvc.Html
+@using OnlineShop.Service.ModelViews;
+@using  System.Globalization;
+@using OnlineShop.Web.Extentions;
+@model IEnumerable<ProductView>
+@{
+            ViewBag.Title = "Product List";
+}
+@section style {
+    @Styles.Render("~/Content/gridmvc")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/gridmvc")
+}
+<div id="main">
+    <div class="grid-container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Product List</div>
+                    <div class="panel-body">
+                        @Html.Grid(Model).Columns(columns =>
+                   {
+                   columns.Add(product => product.Id).Titled("Id").Filterable(true).SetWidth("5%");
+                   columns.Add(product => product.Name).Titled("Name").Filterable(true).SetWidth("10%");
+                   columns.Add(product => product.Description).Titled("Description").Filterable(true).SetWidth("20%")
+                       .Sanitized(false)
+                           .RenderValueAs(product => @<text>
+                           @product.Description.LimitTo(50)
+                        </text>);
+                   columns.Add(product => product.Price).Titled("Price").Filterable(true).SetWidth("10%");
+                   columns.Add(product => product.Category.Name).Titled("Category").Filterable(true).SetWidth("10%");
+                   columns.Add(product => product.ProductImagePath).Titled("Image Path").Filterable(true).SetWidth("10%");
+                   columns.Add().Encoded(false).SetWidth("20%")
+                   .Sanitized(false)
+                   .RenderValueAs(product =>
+                            @<text>
+                                @Html.ActionLink("Edit", "upsert", "product", new { id = product.Id }, new { @class = "btn btn-default btn-sm", style = "margin-left:15px" })
+                                @Html.ActionLink("Remove", "remove", "product", new { id = product.Id }, new { @class = "btn btn-default btn-sm pull-left", onclick = "return confirm('Are you sure to delete the item?')", ondragstart = "return false;", ondrop = "return false;" })
+                            </text>);
+                   }).WithPaging(10).Selectable(false)
+
+                    </div>
+                </div>
+            </div>
+            <!-- .widget-content -->
+        </div>
+        <div class="row">
+        <div class="col-md-8">
+            @Html.ActionLink("Add Product", "upsert", "product", new { id = -1 }, new { @class = "btn btn-default btn-sm" })
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,51 @@
+.ng-hide
+{
+    display:none;
+}
+.sub-content {
+    min-height: 720px;
+}
+
+.assetType {
+    float: right;
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.assetTypeTitle , .assetTypeTitle:hover {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0072c6;
+    white-space: nowrap;
+    margin-right:5px;
+}
+
+.assetTypeImage {
+    display: block;
+    margin-top: 10px;
+    padding: 2px 2px;
+    border: solid 1px #E0E0E4 !important;
+    max-width: 140px;
+}
+label{
+    font-weight:700;
+}
+.lineBreakByWidth {
+    word-wrap: break-word;
+    display: block;
+}
+.smart-rtl #logo {
+    margin-right: 0px !important;
+}
+#logo {
+    margin:0 !important;
+}
+.highlight {
+    padding: 3px 5px;
+margin-bottom: 5px;
+background-color: #f7f7f9;
+border: 1px solid #e1e1e8;
+border-radius: 4px;
+}

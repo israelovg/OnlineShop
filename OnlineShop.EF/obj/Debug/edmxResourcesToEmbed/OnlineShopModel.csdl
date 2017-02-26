@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineShopWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ProductReviews" Relationship="OnlineShopWebModel.FK_ProductReview_AspNetUsers" FromRole="AspNetUsers" ToRole="ProductReview" />
+    <NavigationProperty Name="Cart" Relationship="OnlineShopWebModel.FK_Cart_AspNetUsers" FromRole="AspNetUsers" ToRole="Cart" />
+    <NavigationProperty Name="Order" Relationship="OnlineShopWebModel.FK_Order_AspNetUsers" FromRole="AspNetUsers" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="ProductReviews" Relationship="OnlineShopWebModel.FK_ProductReview_Product" FromRole="Product" ToRole="ProductReview" />
+    <NavigationProperty Name="Cart" Relationship="OnlineShopWebModel.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+    <NavigationProperty Name="OrderDetail" Relationship="OnlineShopWebModel.FK_OrderDetail_Product" FromRole="Product" ToRole="OrderDetail" />
+  </EntityType>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineShopWebEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <EntitySet Name="ProductReview" EntityType="OnlineShopWebModel.ProductReview" />
+    <AssociationSet Name="FK_ProductReview_AspNetUsers" Association="OnlineShopWebModel.FK_ProductReview_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="ProductReview" EntitySet="ProductReview" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductReview_Product" Association="OnlineShopWebModel.FK_ProductReview_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductReview" EntitySet="ProductReview" />
+    </AssociationSet>
+    <EntitySet Name="Cart" EntityType="OnlineShopWebModel.Cart" />
+    <AssociationSet Name="FK_Cart_AspNetUsers" Association="OnlineShopWebModel.FK_Cart_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_Product" Association="OnlineShopWebModel.FK_Cart_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <EntitySet Name="OrderDetail" EntityType="OnlineShopWebModel.OrderDetail" />
+    <AssociationSet Name="FK_OrderDetail_Product" Association="OnlineShopWebModel.FK_OrderDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <EntitySet Name="Order" EntityType="OnlineShopWebModel.Order" />
+    <AssociationSet Name="FK_Order_AspNetUsers" Association="OnlineShopWebModel.FK_Order_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="OnlineShopWebModel.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <EntitySet Name="OrderStatus" EntityType="OnlineShopWebModel.OrderStatus" />
+    <AssociationSet Name="FK_Order_OrderStatus" Association="OnlineShopWebModel.FK_Order_OrderStatus">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ProductReview">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <Property Name="Review" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReviewDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUsers" Relationship="OnlineShopWebModel.FK_ProductReview_AspNetUsers" FromRole="ProductReview" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Product" Relationship="OnlineShopWebModel.FK_ProductReview_Product" FromRole="ProductReview" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_ProductReview_AspNetUsers">
+    <End Type="OnlineShopWebModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="OnlineShopWebModel.ProductReview" Role="ProductReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductReview">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductReview_Product">
+    <End Type="OnlineShopWebModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="OnlineShopWebModel.ProductReview" Role="ProductReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductReview">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="AspNetUsers" Relationship="OnlineShopWebModel.FK_Cart_AspNetUsers" FromRole="Cart" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Product" Relationship="OnlineShopWebModel.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Cart_AspNetUsers">
+    <End Type="OnlineShopWebModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="OnlineShopWebModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_Product">
+    <End Type="OnlineShopWebModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="OnlineShopWebModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <NavigationProperty Name="Product" Relationship="OnlineShopWebModel.FK_OrderDetail_Product" FromRole="OrderDetail" ToRole="Product" />
+    <NavigationProperty Name="Order" Relationship="OnlineShopWebModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+  </EntityType>
+  <Association Name="FK_OrderDetail_Product">
+    <End Type="OnlineShopWebModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="OnlineShopWebModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="LastFourCardDigits" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="OnlineShopWebModel.FK_Order_AspNetUsers" FromRole="Order" ToRole="AspNetUsers" />
+    <NavigationProperty Name="OrderDetails" Relationship="OnlineShopWebModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+    <Property Name="OrderStatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OrderStatus" Relationship="OnlineShopWebModel.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
+  </EntityType>
+  <Association Name="FK_Order_AspNetUsers">
+    <End Type="OnlineShopWebModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="OnlineShopWebModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="AspNetUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Type="OnlineShopWebModel.Order" Role="Order" Multiplicity="1" />
+    <End Type="OnlineShopWebModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="OrderStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="OnlineShopWebModel.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
+  </EntityType>
+  <Association Name="FK_Order_OrderStatus">
+    <End Type="OnlineShopWebModel.OrderStatus" Role="OrderStatus" Multiplicity="1" />
+    <End Type="OnlineShopWebModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="OrderStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

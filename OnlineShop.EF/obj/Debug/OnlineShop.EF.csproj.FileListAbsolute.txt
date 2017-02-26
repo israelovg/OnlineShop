@@ -1,0 +1,10 @@
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\bin\Debug\OnlineShop.EF.dll.config
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\bin\Debug\OnlineShop.EF.dll
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\bin\Debug\OnlineShop.EF.pdb
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\bin\Debug\EntityFramework.dll
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\bin\Debug\EntityFramework.xml
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\obj\Debug\OnlineShop.EF.dll
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\obj\Debug\OnlineShop.EF.pdb
+C:\Users\gabi\Documents\Visual Studio 2015\Projects\OnlineShop\OnlineShop\OnlineShop.EF\obj\Debug\OnlineShop.EF.csprojResolveAssemblyReference.cache

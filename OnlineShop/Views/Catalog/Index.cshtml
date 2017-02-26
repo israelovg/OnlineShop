@@ -1,0 +1,38 @@
+﻿@using OnlineShop.Service.ModelViews
+@model IEnumerable<ProductView>
+@{
+    ViewBag.Title = "Index";
+    var count = 0;
+}
+@section scripts{
+    <script src="@Url.Content("~/")app/controllers/productListController.js"></script>
+}
+<div id="main" ng-controller="productListController">
+    @if (Model.Count() > 0)
+    {
+    <section id="widget-grid" class="catContent">
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                if (count < 2)
+                {
+                    @Html.Partial("_MediumProductWrap", product)
+                }
+                else
+                {
+                    @Html.Partial("_SmallProductWrap", product)
+                }
+                { count++; }
+            }
+        </div>
+    </section>
+    <div class="col-sm-12 text-center">
+        <a ng-click="loadMore()" ng-disabled="loadMoreDisabled" href="javascript:void(0);" class="btn btn-primary btn-lg">Load more <i class="fa fa-arrow-down"></i></a>
+    </div>
+    }
+    else
+    {
+        <div class="grid-container"><h4>No items found</h4></div>
+    }
+</div>
+

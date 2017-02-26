@@ -1,0 +1,24 @@
+﻿<form name="reviewForm" class="well padding-bottom-10">
+    <textarea rows="2" class="form-control" placeholder="Write a review" required novalidate ng-model="userProductReview.review"></textarea>
+    <div class="row">
+        <div class="margin-top-10 col-md-12 smart-form">
+            <div class="col-md-2">
+                <div class="rating">
+                    <input type="radio" name="stars-rating" id="stars-rating-5" ng-model="userProductReview.rating" value="5">
+                    <label for="stars-rating-5"><i class="fa fa-star "></i></label>
+                    <input type="radio" name="stars-rating" id="stars-rating-4" ng-model="userProductReview.rating" value="4">
+                    <label for="stars-rating-4"><i class="fa fa-star "></i></label>
+                    <input type="radio" name="stars-rating" id="stars-rating-3" ng-model="userProductReview.rating" value="3">
+                    <label for="stars-rating-3"><i class="fa fa-star"></i></label>
+                    <input type="radio" name="stars-rating" id="stars-rating-2" ng-model="userProductReview.rating" value="2">
+                    <label for="stars-rating-2"><i class="fa fa-star"></i></label>
+                    <input type="radio" name="stars-rating" id="stars-rating-1" ng-model="userProductReview.rating" value="1">
+                    <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary pull-right" ng-click="submitReview()" ng-disabled="reviewForm.$invalid || isReviewPosted">
+                Submit Review
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+﻿<div class="chat-body no-padding profile-message">
+    <ul>
+        <li ng-repeat="productReview in productReviews" class="message">
+            <span class="message-text">
+                <a href="javascript:void(0);" class="username">
+                   {{productReview.reviewOwner}}
+                    <span class="badge">Purchase Verified</span>
+                    <span class="pull-right">
+                        <i class="fa fa-star fa-2x  {{productReview.rating>0?'text-primary':'text-muted'}}"></i>
+                        <i class="fa fa-star fa-2x  {{productReview.rating>1?'text-primary':'text-muted'}}"></i>
+                        <i class="fa fa-star fa-2x  {{productReview.rating>2?'text-primary':'text-muted'}}"></i>
+                        <i class="fa fa-star fa-2x  {{productReview.rating>3?'text-primary':'text-muted'}}"></i>
+                        <i class="fa fa-star fa-2x  {{productReview.rating>4?'text-primary':'text-muted'}}"></i>
+                    </span>
+                </a>
+
+
+                {{productReview.review}}
+            </span>
+            <ul class="list-inline font-xs">
+                <li>
+                    <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+                </li>
+                <li class="pull-right">
+                    <small class="text-muted pull-right ultra-light"> Posted {{productReview.reviewDateFormated}} </small>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,65 @@
+﻿@using OnlineShop.Service.ModelViews
+@using System.Globalization
+@using OnlineShop.Web.Extentions
+@model ProductView
+@{
+    Layout = null;
+}
+
+<div class="col-sm-6 col-md-6 col-lg-6">
+    <!-- product -->
+    <div class="product-content product-wrap clearfix">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <a href="@Url.Action("index","product",new { id=Model.Id})">
+                    <div class="product-image">
+                        <img src="@Model.ProductImagePath" alt="194x228" class="img-responsive">
+                        <span class="tag2 hot">
+                            HOT
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <div class="product-deatil">
+                    <h5 class="name">
+                        <a href="@Url.Action("index","product",new { id=Model.Id})">
+                            @Model.Name <span>@Model.Category.Name</span>
+                        </a>
+                    </h5>
+                    <p class="price-container">
+                        <span>@Model.PriceInDollar   </span>
+                    </p>
+                    <span class="tag1"></span>
+                </div>
+                <div class="description">
+                    <p>@Model.Description.LimitTo(200)    </p>
+                </div>
+                <div class="product-info smart-form">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            @Html.Partial("_AddToCartBtn",Model.Id)
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="rating">
+                                <input type="radio" name="stars-rating" id="stars-rating-5">
+                                <label for="stars-rating-5"><i class="fa fa-star @string.Format("{0}",(Model.ProductRating>4?"text-primary":""))"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-4">
+                                <label for="stars-rating-4"><i class="fa fa-star @string.Format("{0}",(Model.ProductRating>3?"text-primary":""))"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-3">
+                                <label for="stars-rating-3"><i class="fa fa-star @string.Format("{0}",(Model.ProductRating>2?"text-primary":""))"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-2">
+                                <label for="stars-rating-2"><i class="fa fa-star @string.Format("{0}",(Model.ProductRating>1?"text-primary":""))"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-1">
+                                <label for="stars-rating-1"><i class="fa fa-star @string.Format("{0}",(Model.ProductRating>0?"text-primary":""))"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end product -->
+</div>
+
+

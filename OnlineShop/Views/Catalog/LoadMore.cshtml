@@ -1,0 +1,12 @@
+﻿@using OnlineShop.Service.ModelViews
+@model IEnumerable<ProductView>
+@{
+    Layout = null;  
+}
+@if (Model.Count() > 0)
+{
+        foreach (var product in Model)
+        {
+            @Html.Partial("_SmallProductWrap", product)
+        }
+}

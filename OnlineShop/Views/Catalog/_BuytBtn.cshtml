@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNet.Identity
+@model int
+@{
+    Layout = null;
+}
+@if (User.Identity.IsAuthenticated)
+{
+
+    @Html.ActionLink("Buy", "OrderProduct", "Order", new { id = Model }, new { @class = "btn btn-warning btn-buy" })
+}
+else
+{
+  @Html.ActionLink("Buy", "login", "account", new { returnUrl = Url.Action("OrderProduct", "Order", new { id = Model }) }, new { @class = "btn btn-warning btn-buy" })
+}

@@ -1,0 +1,52 @@
+﻿@using GridMvc.Html
+@using OnlineShop.Service.ModelViews;
+@using  System.Globalization;
+@model IEnumerable<CategoryView>
+@{
+            ViewBag.Title = "Category List";
+}
+@section style {
+    @Styles.Render("~/Content/gridmvc")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/gridmvc")
+}
+<div id="main">
+    <div class="grid-container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Category List</div>
+                    <div class="panel-body">
+                        @Html.Grid(Model).Columns(columns =>
+                   {
+                   columns.Add(category => category.Id).Titled("Id").Filterable(true).SetWidth("10%");
+                   columns.Add(category => category.Name).Titled("Category Name").Filterable(true).SetWidth("10%");
+                   columns.Add(category => category.Description).Titled("Description").Filterable(true).SetWidth("20%");
+                   columns.Add().Encoded(false).SetWidth("60%")
+                           .Sanitized(false)
+                           .RenderValueAs(category =>
+                            @<text>
+                                @Html.ActionLink("Edit", "upsert", "category", new { id = category.Id }, new { @class = "btn btn-default btn-sm", style = "margin-left:15px" })
+                                @Html.ActionLink("Remove", "remove", "category", new { id = category.Id }, new { @class = "btn btn-default btn-sm pull-left", onclick = "return confirm('Are you sure to delete the item?')", ondragstart = "return false;", ondrop = "return false;" })
+                            </text>);
+                   }).WithPaging(10).Selectable(false)
+
+                    </div>
+                </div>
+            </div>
+            <!-- .widget-content -->
+        </div>
+        <div class="row">
+        <div class="col-md-8">
+            @Html.ActionLink("Add Category", "upsert", "category", new { id = -1 }, new { @class = "btn btn-default btn-sm" })
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+
+

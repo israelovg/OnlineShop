@@ -1,0 +1,40 @@
+﻿@using OnlineShop.Service.ModelViews
+@using System.Globalization
+@using OnlineShop.Web.Extentions
+@model OrderDetailView
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="col-sm-12">
+        <!-- product -->
+        <div class="product-content product-wrap clearfix">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="javascript:void(0)">
+                        <div class="product-image" style="min-height:initial">
+                            <img src="@Model.Product.ProductImagePath" alt="194x228" class="img-responsive">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <div class="product-deatil">
+                        <h5 class="name">
+                            <a href="javascript:void(0)">
+                                @Model.Product.Name <span>@Model.Product.Category.Name</span>
+                            </a>
+                        </h5>
+                        <p class="price-container">
+                            <span>@Model.Quantity   Pieces   <span class="txt-multiply">×</span>  @string.Format(new CultureInfo("en-SG", false), "{0:c0}", Model.Product.Price)   </span>
+                        </p>
+                        <span class="tag1"></span>
+                    </div>
+                    <div class="description">
+                        <p>@Model.Product.Description.LimitTo(200)   </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end product -->
+    </div>
+</div>

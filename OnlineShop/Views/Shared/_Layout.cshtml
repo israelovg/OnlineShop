@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <base href="@Url.Content("~")" />
+    <link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/smartadmin-production.min.css">
+
+    <link href="~/smartAdmin/css/smartadmin-production-plugins.min.css" rel="stylesheet" />
+     <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    @*<link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/smartadmin-production-plugins.min.css">
+   
+    <link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/smartadmin-skins.min.css">*@
+    <!-- SmartAdmin RTL Support (Not using RTL? Disable the CSS below to save bandwidth) -->
+    @*<link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/smartadmin-rtl.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/demo.min.css">*@
+    @*<link href="@Url.Content("~/")angular-datatables/angular-datatables.css" rel="stylesheet" />*@
+    <!-- #FAVICONS -->
+    
+    @Styles.Render("~/Content/css")
+    @RenderSection("style", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body ng-app="onlineShop" class="fixed-header fixed-navigation smart-rtl" data-ui-view="root"  data-autoscroll="false">
+    <div>@Html.Partial("~/Views/Partials/Header.cshtml")</div>
+    @if (new string[] {"account"}.All(x=>!x.Equals(ViewBag.CurrentController, StringComparison.CurrentCultureIgnoreCase)))
+    {
+       @Html.Action("categoryMenu", "category")
+    }
+    @RenderBody()
+    
+    <div class="pnlWait" title="loading" style="display: none;">
+        <h5>
+            <img style="display:inline-block;padding:10px 10px" src="@Url.Content("~/")images/loading-icon.gif" />
+        </h5>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/general")
+    <script src="@Url.Content("~/")scripts/angular/angular.js"></script>
+    <script src="@Url.Content("~/")scripts/angular/angular-route.js"></script>
+    <script src="@Url.Content("~/")scripts/angular/angular-sanitize.js"></script>
+    <script src="@Url.Content("~/")scripts/angular/angular-resource.js"></script>
+    <script src="@Url.Content("~/")scripts/angular/angular-animate.min.js"></script>
+    <script src="@Url.Content("~/")scripts/angular-ui-bootstrap.js"></script>
+    @*<script src="@Url.Content("~/")angular-datatables/jquery.dataTables.js"></script>
+    <script src="@Url.Content("~/")angular-datatables/angular-datatables.bootstrap.min.js"></script>
+    <script src="@Url.Content("~/")angular-datatables/angular-datatables.min.js"></script>*@
+    <script src="@Url.Content("~/")app/app.js"></script>
+    <script src="@Url.Content("~/")app/services/config.js"></script>
+    <script src="@Url.Content("~/")app/services/modalService.js"></script>
+    <script src="@Url.Content("~/")app/services/dataService.js"></script>
+    <script src="@Url.Content("~/")app/controllers/searchController.js"></script>
+        @RenderSection("scripts", required: false)
+</body>
+</html>
