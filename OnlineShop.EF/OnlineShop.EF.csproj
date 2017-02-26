@@ -93,7 +93,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="OnlineShopModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>OnlineShopModel.Designer.cs</LastGenOutput>
