@@ -1,0 +1,107 @@
+﻿@model OnlineShop.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<div id="extr-page">
+    <header id="header">
+        <!--<span id="logo"></span>-->
+
+        <div class="row pull-right" style="width:350px;line-height:71px">
+            <div class="col-md-6"><span class="hidden-mobile hidden-xs">Already registered?</span> </div>
+            <div class="col-md-2"> @Html.ActionLink("Sign In", "login", "account", null, new { @class = "btn btn-danger" })</div>
+        </div>
+
+    </header>
+    <div id="main" role="main">
+
+        <!-- MAIN CONTENT -->
+        <div id="content" class="container">
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 hidden-xs hidden-sm">
+                    <h1 class="txt-color-red login-header-big">Women's Fashion</h1>
+                    <div class="hero">
+
+                        <div class="pull-left login-desc-box-l">
+                            <h4 class="paragraph-header">For all the latest fashion straight from the catwalk, Missguided is where it's at! We’ve got all the clothing ranges to make sure you’re maximizing your attitude whilst taking your style game to new heights</h4>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h5 class="about-heading">Women's Fashion - Are you up to date?</h5>
+                            <p>
+                                Revamp your wardrobe with fresh fabrics straight from the new season – whether it’s dropping dollar on some artisan embroidery for a subtle feminine kick.
+                            </p>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                            <h5 class="about-heading">Not just your average template!</h5>
+                            <p>
+                                From casual, off-duty looks to maximum-mileage outfits, we bet your bottom dollar you’ll be splashing out on more than just one. Get browsin’, get clickin’ and get lookin’ lit af
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                    <div class="well no-padding">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "smart-form client-form", role = "form", id = "smart-form-register" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <header>
+                                Registration is FREE
+                            </header>
+
+                            <fieldset>
+                                <section>
+                                    @Html.ValidationSummary("", new { @class = "text-danger l   ist-unstyled" })
+                                </section>
+
+                                <section>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-envelope"></i>
+                                        @Html.TextBoxFor(m => m.Email, new { type = "email", placeholder = "Email address" })
+                                        <b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
+                                    </label>
+                                </section>
+
+                                <section>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-lock"></i>
+                                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password", type = "password" })
+                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                    </label>
+                                </section>
+
+                                <section>
+                                    <label class="input">
+                                        <i class="icon-append fa fa-lock"></i>
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm password", type = "password" })
+                                        <b class="tooltip tooltip-bottom-right">Don't forget your password</b>
+                                    </label>
+                                </section>
+                            </fieldset>
+                            <footer>
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>
+                            </footer>
+
+                            <div class="message">
+                                <i class="fa fa-check"></i>
+                                <p>
+                                    Thank you for your registration!
+                                </p>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

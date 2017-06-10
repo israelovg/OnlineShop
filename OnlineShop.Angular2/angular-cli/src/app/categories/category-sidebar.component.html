@@ -1,0 +1,10 @@
+﻿<aside id="left-panel">
+    <div class="indutry-info  col-md-12  ">
+        <div class="industry-enter"><span>New In<br>Woman</span></div>
+
+        <div class="keyword-list">
+            <a *ngFor="let category of categories" [routerLink]="['/products']" [queryParams]="{ category: category.id }" routerLinkActive="active" [ngClass]="{highlight:selectedCategoryId==category.id}">{{category.name}}</a>
+        </div>
+
+    </div>
+</aside>

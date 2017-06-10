@@ -1,0 +1,67 @@
+﻿@{ 
+    var path = VirtualPathUtility.ToAbsolute("~");
+    var rootUrl = new Uri(Request.Url, path).AbsoluteUri;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <base href="@rootUrl" />
+    <link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/smartadmin-production.min.css">
+
+    <link href="~/smartAdmin/css/smartadmin-production-plugins.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @RenderSection("style", required: false)
+     <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+    @*<link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/smartadmin-production-plugins.min.css">
+   
+    <link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/smartadmin-skins.min.css">*@
+    <!-- SmartAdmin RTL Support (Not using RTL? Disable the CSS below to save bandwidth) -->
+    @*<link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/smartadmin-rtl.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="smartAdmin/css/demo.min.css">*@
+    @*<link href="@Url.Content("~/")angular-datatables/angular-datatables.css" rel="stylesheet" />*@
+    <!-- #FAVICONS -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="@Url.Content("~")ng2/node_modules/core-js/client/shim.min.js"></script>
+    <!--DEBUG-->
+    @*<script src="@Url.Content("~")ng2/node_modules/zone.js/dist/zone.js"></script>
+    <script src="@Url.Content("~")ng2/node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="@Url.Content("~")ng2/node_modules/systemjs/dist/system.src.js"></script>*@
+    <!-- Configure SystemJS -->
+    @*<script src="@Url.Content("~")ng2/systemjs.config.js"></script>*@
+
+    @*<script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>*@
+    <!--end debug-->
+    <!--PROD-->
+    @*<script src="@Url.Content("~")ng2/node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="@Url.Content("~")ng2/dist/bundle.min.js"></script>*@
+  
+   
+</head>
+<body ng-app="onlineShop" class="fixed-header fixed-navigation smart-rtl" data-ui-view="root"  data-autoscroll="false">
+    <div>@Html.Partial("~/Views/Partials/Header.cshtml")</div>
+    @RenderBody()
+    
+    <div class="pnlWait" title="loading" style="display: none;">
+        <h5>
+            <img style="display:inline-block;padding:10px 10px" src="@Url.Content("~/")images/loading-icon.gif" />
+        </h5>
+    </div>
+
+        @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="@Url.Content("~")angular-cli/dist/inline.bundle.js"></script>
+    <script type="text/javascript" src="@Url.Content("~")angular-cli/dist/polyfills.bundle.js"></script>
+    <script type="text/javascript" src="@Url.Content("~")angular-cli/dist/styles.bundle.js"></script>
+    <script type="text/javascript" src="@Url.Content("~")angular-cli/dist/vendor.bundle.js"></script>
+    <script type="text/javascript" src="@Url.Content("~")angular-cli/dist/main.bundle.js"></script>
+    <script type="text/javascript" src="@Url.Content("~")angular-cli/dist/scripts.bundle.js"></script> 
+</body>
+</html>

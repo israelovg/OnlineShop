@@ -1,0 +1,20 @@
+﻿<div class="navbar-form navbar-right" style="width:30%">
+    <div class="input-group  hidden-mobile">
+        <div class="input-group-btn">
+            <button  type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                {{selectedCategory.name}} <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li *ngFor="let category of categories" [ngClass]="{active: category.id == selectedCategory.id}">
+                    <a href="javascript:void(0)" (click)="selectCategory(category.id)"><i *ngIf="category.id == selectedCategory.id" class="fa fa-check"></i>{{category.name}}</a>
+                </li>
+            </ul>
+        </div>
+        <input class="form-control" [(ngModel)]="search" (keypress)="searchInputKeyPress($event)" type="text" placeholder="Search..." id="search-project">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default" (click)="searchClicked()">
+                &nbsp;&nbsp;&nbsp;<i class="fa fa-fw fa-search fa-lg"></i>&nbsp;&nbsp;&nbsp;
+            </button>
+        </div>
+    </div>
+</div>

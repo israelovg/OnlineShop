@@ -1,0 +1,46 @@
+﻿<div id="main">
+    <div class="grid-container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Cart Items</div>
+                    <div class="panel-body">
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price per item $</th>
+                                    <th>Quantity</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cart of userCarts">
+                                    <td>{{ cart.product.name }}</td>
+                                    <td>{{cart.product.category.name}}</td>
+                                    <td>{{ cart.product.price }}</td>
+                                    <td>{{ cart.quantity }}</td>
+                                    <td><button class="btn btn-primary" (click)="removeFromCart(cart)" style = "margin-left:15px">Remove</button>
+                                    <button class="btn btn-warning btn-buy" (click)="orderCart(cart)">Buy</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4> Total  {{totalAmount}} $</h4>
+                            </div>
+                            <div class="col-md-6" *ngIf="totalAmount>0"><button (click)="orderAllCarts()" class="btn btn-warning">CheckOut</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- .widget-content -->
+        </div>
+    </div>
+</div>

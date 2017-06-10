@@ -1,0 +1,85 @@
+﻿.validation-summary-errors ul{
+      list-style-type: none;
+}
+.catContent{
+    width:98%
+}
+.keyword-list
+{
+        line-height: 22px;
+    text-align: center;
+    max-height: 435px;
+    overflow: hidden;
+}
+.highlight{
+    color:#c14051 !important;
+}
+.keyword-list a {
+    display: block;
+    color: #4e4e4e;
+    margin-top: 16px;
+}   
+.indutry-info {
+    float: left;
+    height: 551px;
+    border-right: 1px solid #eee;
+   
+}
+.indutry-info .industry-enter span {
+    display: block;
+    height: 100px;
+    padding-top: 22px;
+    border-bottom: 1px solid #eee;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: 700;
+    color:rgba(72, 66, 69, 0.65);
+}
+.chat-body li.message .message-text{margin-left:0px;}
+.grid-container{
+    padding-left:40px;
+    padding-top:50px;
+}
+.btn-buy{
+    width:80px;
+}
+product-content .product-image-wide {
+        background-color: #fff;
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.price-container .txt-multiply {
+    padding: 0 10px;
+}
+.all-total-price-warpper {
+     font-size: 18px; 
+}
+.all-total-price-warpper em {
+    font-weight: 400;
+    color: #999;
+}
+.all-total-price #all-totalfee {
+    padding-left: 5px;
+}
+.ui-cost b {
+    color: #F60;
+}
+.field-validation-error {
+    color:red;
+    text-align:left ;
+        padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#extr-page{
+    margin-top:50px;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.small-product
+{
+    height:297px;
+}

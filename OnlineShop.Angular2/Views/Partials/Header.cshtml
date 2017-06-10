@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNet.Identity
+@{ 
+    Layout = null;
+}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*<a href="@Url.Content("~")"  [routerLink]="['/products']" routerLinkActive="active" class = "navbar-brand">Women's Fashion</a>*@
+            <main-link></main-link>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+        @if (User.IsInRole("Administrator"))
+        {
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Categories","list","category",null,null)</li>
+                        <li>@Html.ActionLink("Products", "list", "product", null, null)</li>
+                        <li>@Html.ActionLink("Orders", "orders", "administration", null, null)</li>                       
+                    </ul>
+                </li>
+            </ul>
+        }
+           
+            <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
+
+                @if (@User.Identity.IsAuthenticated)
+                { 
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("My cart","index","cart", null,null)</li>
+                        <li>@Html.ActionLink("My orders", "list", "order", null, null)</li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="navbar-text">
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a class="navbar-link" href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a>
+                        }
+                    </div>
+
+                </li>
+                }
+                else
+                {
+                    if (ViewBag.CurrentController != null && !ViewBag.CurrentController.Equals("account", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                    <li>
+                        @Html.ActionLink("Log In", "login", "account", null, new { @class = "navbar-link" })
+                    </li>
+                    <li>@Html.ActionLink("Register", "register", "account", null, new { @class = "navbar-link" })</li>
+                    }
+                }
+
+
+            </ul>
+           <app-search></app-search>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>

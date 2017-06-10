@@ -1,0 +1,55 @@
+﻿<div class="col-sm-6 col-md-6 col-lg-4 small-product">
+    <!-- product -->
+    <div class="product-content product-wrap clearfix">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12">
+                <a [routerLink]="['/product',product.id]" routerLinkActive="active">
+                    <div class="product-image">
+                        <img [src]="product.productImagePath" alt="194x228" class="img-responsive">
+                        <span class="tag2 hot">
+                            HOT
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <div class="product-deatil">
+                    <h5 class="name">
+                        <a [routerLink]="['/product',product.id]" routerLinkActive="active">
+                            {{product.name}} <span>{{product.category.name}}</span>
+                        </a>
+                    </h5>
+                    <p class="price-container">
+                        <span>{{product.priceInDollar}}   </span>
+                    </p>
+                    <span class="tag1"></span>
+                </div>
+                <div class="description">
+                    <p>{{product.description}}    </p>
+                </div>
+                <div class="product-info smart-form">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <add-to-cart-btn [product]="product" [isAuthenticated]="isAuthenticated"></add-to-cart-btn>
+</div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="rating">
+                                <input type="radio" name="stars-rating" id="stars-rating-5">
+                                <label for="stars-rating-5"><i class="fa fa-star {{product.productRating>4?'text-primary':''}} "></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-4">
+                                <label for="stars-rating-4"><i class="fa fa-star {{product.productRating>3?'text-primary':''}}"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-3">
+                                <label for="stars-rating-3"><i class="fa fa-star {{product.productRating>2?'text-primary':''}}"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-2">
+                                <label for="stars-rating-2"><i class="fa fa-star {{product.productRating>1?'text-primary':''}}"></i></label>
+                                <input type="radio" name="stars-rating" id="stars-rating-1">
+                                <label for="stars-rating-1"><i class="fa fa-star {{product.productRating>0?'text-primary':''}}"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end product -->
+</div>

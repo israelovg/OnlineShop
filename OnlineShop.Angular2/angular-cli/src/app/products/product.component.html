@@ -1,0 +1,143 @@
+﻿<section id="widget-grid" class="catContent">
+
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <!-- product -->
+                <div class="product-content product-wrap clearfix product-deatil">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12 col-xs-12 ">
+                            <div class="product-image">
+                                <img src="{{product?.productImagePath}}" alt="194x228" class="img-responsive">
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12" style="padding-left:15px">
+
+                            <h2 class="name">
+                                {{product.name}}
+                                <small></small>
+                                <i class="fa fa-star fa-2x {{product.productRating>0?'text-primary':'text-muted'}}"></i>
+                                <i class="fa fa-star fa-2x {{product.productRating>1?'text-primary':'text-muted'}}"></i>
+                                <i class="fa fa-star fa-2x {{product.productRating>2?'text-primary':'text-muted'}}"></i>
+                                <i class="fa fa-star fa-2x {{product.productRating>3?'text-primary':'text-muted'}}"></i>
+                                <i class="fa fa-star fa-2x {{product.productRating>4?'text-primary':'text-muted'}}"></i>
+                                <span class="fa fa-2x"><h5>{{product.productReviews?.length}} Votes</h5></span>
+
+
+                            </h2>
+                            <hr>
+                            <h3 class="price-container">
+                                {{product.priceInDollar}}
+                                <small>*includes tax</small>
+                            </h3>
+
+                            <div class="certified">
+                                <ul>
+                                    <li><a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a></li>
+                                    <li><a href="javascript:void(0);">Certified<span>Quality Assured</span></a></li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <div class="description description-tabs">
+
+
+                                <ul id="myTab" class="nav nav-pills">
+                                    <li class="active"><a href="#more-information" data-toggle="tab" class="no-margin" aria-expanded="true">Product Description </a></li>
+                                    <li class=""><a href="#reviews" data-toggle="tab" aria-expanded="false">Reviews</a></li>
+                                </ul>
+                                <div id="myTabContent" class="tab-content">
+                                    <div class="tab-pane fade active in" id="more-information">
+                                        <br>
+                                        <strong>{{product.name}}</strong>
+                                        <p>{{product.description}} </p>
+                                    </div>
+
+                                    <!--<div class="tab-pane fade" id="reviews" ng-controller="reviewController">
+                                        <br>
+                                        @if (@User.Identity.IsAuthenticated)
+                                        {
+                                        <div ng-include="@string.Format(" '{0}app/partials/productReviewForm.html' ",Url.Content(" ~"))"></div>
+                                        }
+                                        <div ng-include="@string.Format(" '{0}app/partials/productReviews.html' ",Url.Content(" ~"))"></div>
+
+                                    </div>-->
+                                    <!--review content-->
+                                    <div class="tab-pane fade" id="reviews">
+                                        <form *ngIf="isAuthenticated" #form="ngForm" (ngSubmit)="submitForm(userProductReview,form)" class="well padding-bottom-10">
+                                            <textarea rows="2" class="form-control" placeholder="Write a review" required novalidate [(ngModel)]="userProductReview.review" name="review"></textarea>
+                                            <div class="row">
+                                                <div class="margin-top-10 col-md-12 smart-form">
+                                                    <div class="col-md-2">
+                                                        <div class="rating">
+                                                            <input type="radio" name="rating" id="stars-rating-5" [(ngModel)]="userProductReview.rating" value="5">
+                                                            <label for="stars-rating-5"><i class="fa fa-star "></i></label>
+                                                            <input type="radio" name="rating" id="stars-rating-4" [(ngModel)]="userProductReview.rating" value="4">
+                                                            <label for="stars-rating-4"><i class="fa fa-star "></i></label>
+                                                            <input type="radio" name="rating" id="stars-rating-3" [(ngModel)]="userProductReview.rating" value="3">
+                                                            <label for="stars-rating-3"><i class="fa fa-star"></i></label>
+                                                            <input type="radio" name="rating" id="stars-rating-2" [(ngModel)]="userProductReview.rating" value="2">
+                                                            <label for="stars-rating-2"><i class="fa fa-star"></i></label>
+                                                            <input type="radio" name="rating" id="stars-rating-1" [(ngModel)]="userProductReview.rating" value="1">
+                                                            <label for="stars-rating-1"><i class="fa fa-star"></i></label>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-sm btn-primary pull-right"  [disabled]="form.invalid">
+                                                        Submit Review
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="chat-body no-padding profile-message">
+                                            <ul>
+                                                <li *ngFor="let productReview of product?.productReviews" class="message">
+                                                    <span class="message-text">
+                                                        <a href="javascript:void(0);" class="username">
+                                                            {{productReview.reviewOwner}}
+                                                            <span class="badge">Purchase Verified</span>
+                                                            <span class="pull-right">
+                                                                <i class="fa fa-star fa-2x  {{productReview.rating>0?'text-primary':'text-muted'}}"></i>
+                                                                <i class="fa fa-star fa-2x  {{productReview.rating>1?'text-primary':'text-muted'}}"></i>
+                                                                <i class="fa fa-star fa-2x  {{productReview.rating>2?'text-primary':'text-muted'}}"></i>
+                                                                <i class="fa fa-star fa-2x  {{productReview.rating>3?'text-primary':'text-muted'}}"></i>
+                                                                <i class="fa fa-star fa-2x  {{productReview.rating>4?'text-primary':'text-muted'}}"></i>
+                                                            </span>
+                                                        </a>
+
+
+                                                        {{productReview.review}}
+                                                    </span>
+                                                    <ul class="list-inline font-xs">
+                                                        <li>
+                                                            <a href="javascript:void(0);" class="text-info"><i class="fa fa-thumbs-up"></i> This was helpful (22)</a>
+                                                        </li>
+                                                        <li class="pull-right">
+                                                            <small class="text-muted pull-right ultra-light"> Posted {{productReview.reviewDateFormated}} </small>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <add-to-cart-btn [product]="product" [isAuthenticated]="isAuthenticated"></add-to-cart-btn>
+                                    <buy-btn [product]="product" [isAuthenticated]="isAuthenticated"></buy-btn>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end product -->
+            </div>
+
+        </div>
+        <!-- end row -->
+
+    </section>

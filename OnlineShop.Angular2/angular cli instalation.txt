@@ -1,0 +1,17 @@
+﻿//install angular cli globaly
+npm install -g @angular/cli
+
+//create new folder with ralated files
+ng new my-project
+
+cd my-project
+
+//will compile and open web server in default http://localhost:4200
+ng serve -open
+
+//will compile , and trigger on file saves
+ng build -watch
+
+//for  release build
+ng build  --prod
+

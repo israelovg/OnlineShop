@@ -1,0 +1,183 @@
+﻿<div id="main">
+    <section id="widget-grid" class="catContent grid-container">
+
+
+        <!-- row -->
+        <div class="row">
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 sortable-grid ui-sortable">
+
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget jarviswidget-sortable" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" role="widget">
+                    <header role="heading">
+                        <div class="jarviswidget-ctrls" role="menu">  </div>
+                        <span class="widget-icon">  </span>
+                        <h2>Review your order</h2>
+
+                        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                    </header>
+
+                    <!-- widget div-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div role="content">
+
+                                <!-- widget edit box -->
+                                <div class="jarviswidget-editbox">
+                                    <!-- This area used as dropdown edit box -->
+
+                                </div>
+                                <!-- end widget edit box -->
+                                <!-- widget content -->
+                                <div class="widget-body">
+                                    <form  #form="ngForm" (ngSubmit)="submitOrder(order,form)" class="form-horizontal">
+                                        <fieldset>
+                                            <legend>Shiping informatoin</legend>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="address">Address</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" [(ngModel)]="order.address" #address="ngModel" name="address" required placeholder="Address" class="form-control" />
+                                                </div>
+                                                <div [hidden]="address.valid || address.pristine" class="form-control-feedback col-md-4" style="color:red">the field is requered!</div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="city" class="col-md-2 control-label">City</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" [(ngModel)]="order.city" #city="ngModel" required placeholder="City" name="city" class="form-control" />
+                                                </div>
+                                                <div [hidden]="city.valid || city.pristine" class="form-control-feedback col-md-4" style="color:red">the field is requered!</div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="state" class="col-md-2 control-label">State</label>
+                                                <div class="col-md-6">
+                                                    <input [(ngModel)]="order.state" name="state" placeholder="State" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="postalCode" class="col-md-2 control-label">Postal Code</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" [(ngModel)]="order.postalCode" name="postalCode" placeholder="Postal Code" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="country" class="col-md-2 control-label">Country</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" [(ngModel)]="order.country" #country="ngModel" name="county" required placeholder="Country" class="form-control"/>
+                                                </div>
+                                                <div [hidden]="country.valid || county.pristine" class="form-control-feedback col-md-4" style="color:red">the field is requered!</div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="phone" class="col-md-2 control-label">Phone</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" [(ngModel)]="orde.phone" #phone="ngModel" required placeholder="Phone" name="phone" maxlength="24" class="form-control"/>
+                                                </div>
+                                                <div [hidden]="phone.valid || phone.pristine" class="form-control-feedback col-md-4" style="color:red">the field is requered!</div>
+                                            </div>
+
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="col-md-12">
+                                                <legend>Payment</legend>
+                                                <div class="form-group">
+                                                    <label for="cardNumber">Card number</label>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <input type="number" name="cardNumber" [(ngModel)]="order.cardNumber" #cardNumber="ngModel" required placeholder="Card Number" pattern="^\\d{16}$" class="form-control"/>
+                                                            <div [hidden]="cardNumber.valid || cardNumber.pristine"  style="color:red">the card number is requered!</div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Expire Date</label><label class="col-md-5">Security Code</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <input type="number" [(ngModel)]="order.month" #month="ngModel" pattern="^\\d{2}$" name="month" placeholder="MM" class="form-control" />
+                                                            <div [hidden]="month.valid || month.pristine" style="color:red">month is requered!</div>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <input type="number" [(ngModel)]="order.year" #year="ngModel" pattern="^\\d{4}$" name="year" placeholder="YYYT" class="form-control" />
+                                                            <div [hidden]="year.valid || year.pristine" style="color:red">year is requered!</div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="number" [(ngModel)]="order.securityCode" #securityCode="ngModel" pattern="^\\d{3}$" name="securityCode" placeholder="security Code" class="form-control" />
+                                                            <div [hidden]="securityCode.valid || securityCode.pristine" style="color:red">security code is requered!</div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <label class="col-md-8">Card holder name</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <input type="text" [(ngModel)]="order.firstName" #firstName="ngModel" required name="firstName" placeholder="first Name" class="form-control" />
+                                                            <div [hidden]="firstName.valid || firstName.pristine" style="color:red" class="errorMessage">first name is requered!</div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="text" [(ngModel)]="order.lastName" #lastName="ngModel" required name="lastName" placeholder="Last Name" class="form-control" />
+                                                            <div [hidden]="lastName.valid || lastName.pristine" style="color:red" class="errorMessage">last name is requered!</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="all-total-price-warpper">
+                                                                <em>All Total:</em>
+                                                                <span id="all-totalfee" class="ui-cost">
+                                                                    <b>{{order.totalInDollars}}</b>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <button type="submit" class="btn btn-warning">Confirm & Pay</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+
+
+</div>
+                                <!-- end widget content -->
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div role="content">
+                                <fieldset>
+                                    <legend> Order Review</legend>
+                                    <order-product *ngFor="let orderDetail of order.orderDetails" [orderDetail]="orderDetail"></order-product>
+                                </fieldset>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- end widget div -->
+
+                </div>
+                <!-- end widget -->
+
+            </article>
+            <!-- WIDGET END -->
+
+        </div>
+
+
+    </section>
+</div>

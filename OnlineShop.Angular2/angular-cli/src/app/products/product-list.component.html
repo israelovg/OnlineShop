@@ -1,0 +1,12 @@
+﻿<section id="widget-grid" class="catContent" *ngIf="products?.length>0">
+    <div class="row">
+        <div *ngFor="let product of products;let i=index;">
+            <medium-product *ngIf="i<2" [product]="product" [isAuthenticated]="isAuthenticated"></medium-product>
+            <small-product *ngIf="i>1" [product]="product" [isAuthenticated]="isAuthenticated"></small-product>
+        </div>
+    </div>
+</section>
+<div class="col-sm-12 text-center">
+    <a (click)="loadMore()" *ngIf="loadMoreShow" href="javascript:void(0);" class="btn btn-primary btn-lg">Load more <i class="fa fa-arrow-down"></i></a>
+</div>
+<div class="grid-container" *ngIf="products?.length==0"><h4>No items found</h4></div>
